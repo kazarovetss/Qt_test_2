@@ -19,9 +19,22 @@ int main(int argc, char *argv[]) {
 
     QHBoxLayout *mainLayout = new QHBoxLayout;  // Создание главной горизонтальной компоновки
 
-    QListView *listView = new QListView;
+    QListView* listView = new QListView;
+    QStandardItemModel *listModel = new QStandardItemModel();
+    listView->setModel(listModel);
 
-    QListWidget *listWidget = new QListWidget();
+//    // Добавление элементов в модель напрямую
+//    for (int i = 0; i < 5; ++i) {
+//        QStandardItem* item = new QStandardItem(QString("Элемент %1").arg(i));
+//        listModel->appendRow(item);
+//    }
+
+//    if (listModel->rowCount() == 0) {
+//        qDebug() << "Модель пуста.";
+//    } else {
+//        qDebug() << "Модель содержит элементы.";
+//    }
+
     QVBoxLayout *leftLayout = new QVBoxLayout; // Создание вертикальной компоновки для левой части интерфейса
     QGraphicsScene *graphicsScene = new QGraphicsScene();
     MyGraphicsView *graphicsView = new MyGraphicsView(listView); // Создание наследованного от QGraphicsView виджета для отображения графической сцены
@@ -33,7 +46,7 @@ int main(int argc, char *argv[]) {
     QTableView *tableView = new QTableView;
     bottomLayout->addWidget(listView);
     bottomLayout->addWidget(tableView);
-    QStandardItemModel *model = new QStandardItemModel(2, 2); // 2 строки и 2 столбца
+    QStandardItemModel *model = new QStandardItemModel(2, 2);
 
     tableView->horizontalHeader()->setVisible(false);
     tableView->verticalHeader()->setVisible(false);
